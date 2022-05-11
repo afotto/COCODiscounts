@@ -1,0 +1,18 @@
+[
+  {
+    "Id": 1,
+    "Nombre": "Sodas"
+  },
+  {
+    "Id": 2,
+    "Nombre": "Cleaning"
+  },
+  {
+    "Id": 3,
+    "Nombre": "Food"
+  },
+  {
+    "Id": 4,
+    "Nombre": "Bathroom"
+  }
+]

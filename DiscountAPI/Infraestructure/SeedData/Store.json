@@ -1,0 +1,20 @@
+[
+  {
+    "Id": 1,
+    "Name": "COCO Downtown",
+    "OpenTime": 9,
+    "CloseTime": 22
+  },
+  {
+    "Id": 2,
+    "Name": "COCO Bay",
+    "OpenTime": 9,
+    "CloseTime": 22
+  },
+  {
+    "Id": 3,
+    "Name": "COCO Mall",
+    "OpenTime": 9,
+    "CloseTime": 22
+  }
+]
