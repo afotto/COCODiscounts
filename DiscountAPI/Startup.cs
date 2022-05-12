@@ -27,10 +27,13 @@ namespace DiscountAPI
             services.AddDbContext<ApplicationDbContext>(option => option.UseSqlServer(Configuration.GetConnectionString("DefaultConectionString")));
 
             services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<ICategoryRepository, CategoryRepository>();
 
             services.AddAutoMapper(configuration =>{
                 configuration.CreateMap<Product, ProductDTO>();
                 configuration.CreateMap<ProductDTO, Product>();
+                configuration.CreateMap<Category, CategoryDTO>();
+                configuration.CreateMap<CategoryDTO, Category>();
             }, typeof(Startup)
             );
 

@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using AutoMapper;
 using DiscountAPI.Models;
 using DiscountAPI.Models.DTO;
 using DiscountAPI.Repository.IRepository;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DiscountAPI.Controllers
@@ -36,7 +32,10 @@ namespace DiscountAPI.Controllers
         {
             var product = productRepository.GetProduct(id);
             if (product == null) return NotFound();
-            return Ok(mapper.Map<ProductDTO>(product));
+
+            var productDTO = mapper.Map<ProductDTO>(product);
+            productDTO.NameCategory = product.Category.Nombre;
+            return Ok(productDTO);
         }
 
         [HttpPost]

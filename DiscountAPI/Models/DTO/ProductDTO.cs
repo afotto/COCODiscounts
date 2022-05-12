@@ -13,5 +13,6 @@ namespace DiscountAPI.Models.DTO
         public string Name { get; set; }
         public string Description { get; set; }
         public double Price { get; set; }
+        public string NameCategory { get; set; }
     }
 }

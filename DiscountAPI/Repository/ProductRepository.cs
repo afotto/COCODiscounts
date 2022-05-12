@@ -1,6 +1,7 @@
 ﻿using DiscountAPI.Context;
 using DiscountAPI.Models;
 using DiscountAPI.Repository.IRepository;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,12 +32,16 @@ namespace DiscountAPI.Repository
 
         public IEnumerable<Product> GetAllProduct()
         {
-            return context.Product.ToList();
+            return context.Product
+                .Include(c => c.Category)
+                .ToList();
         }
 
         public Product GetProduct(int id)
         {
-            return context.Product.FirstOrDefault(x => x.Id.Equals(id));
+            return context.Product
+                .Include(c => c.Category)
+                .FirstOrDefault(x => x.Id.Equals(id));
         }
 
         public bool ProductExists(string name)
