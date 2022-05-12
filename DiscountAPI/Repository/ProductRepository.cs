@@ -2,10 +2,8 @@
 using DiscountAPI.Models;
 using DiscountAPI.Repository.IRepository;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace DiscountAPI.Repository
 {

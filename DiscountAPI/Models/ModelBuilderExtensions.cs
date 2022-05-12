@@ -47,6 +47,22 @@ namespace DiscountAPI.Models
                 new Store { Id = 2, Name = "COCO Bay", OpenTime = 9, CloseTime = 22 },
                 new Store { Id = 3, Name = "COCO Mall", OpenTime = 9, CloseTime = 22 }
                 );
+
+            modelBuilder.Entity<Stock>().HasData(
+                new Stock { StoreStockId = 1, ProductStockId=1,  Quantity=10 },
+                new Stock { StoreStockId = 1, ProductStockId = 2, Quantity = 20 },
+                new Stock { StoreStockId = 1, ProductStockId = 3, Quantity = 10 },
+                new Stock { StoreStockId = 1, ProductStockId = 4, Quantity = 12 },
+                new Stock { StoreStockId = 2, ProductStockId = 10, Quantity = 30 },
+                new Stock { StoreStockId = 2, ProductStockId = 18, Quantity = 5 },
+                new Stock { StoreStockId = 2, ProductStockId = 13, Quantity = 30 },
+                new Stock { StoreStockId = 2, ProductStockId = 22, Quantity = 5 },
+                new Stock { StoreStockId = 3, ProductStockId = 5, Quantity = 11 },
+                new Stock { StoreStockId = 3, ProductStockId = 6, Quantity = 15 },
+                new Stock { StoreStockId = 3, ProductStockId = 3, Quantity = 10 },
+                new Stock { StoreStockId = 3, ProductStockId = 8, Quantity = 12 },
+                new Stock { StoreStockId = 3, ProductStockId = 4, Quantity = 9 }
+                );
         }
     }
 }

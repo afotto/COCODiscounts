@@ -28,12 +28,15 @@ namespace DiscountAPI
 
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
+            services.AddScoped<IStockRepository, StockRepository>();
 
             services.AddAutoMapper(configuration =>{
                 configuration.CreateMap<Product, ProductDTO>();
                 configuration.CreateMap<ProductDTO, Product>();
                 configuration.CreateMap<Category, CategoryDTO>();
                 configuration.CreateMap<CategoryDTO, Category>();
+                configuration.CreateMap<Stock, StockDTO>();
+                configuration.CreateMap<StockDTO, Stock>();
             }, typeof(Startup)
             );
 
