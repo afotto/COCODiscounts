@@ -17,6 +17,8 @@ namespace DiscountAPI.Context
         public DbSet<Category> Category { get; set; }
         public DbSet<Store> Store { get; set; }
         public DbSet<Stock> Stock { get; set; }
+        public DbSet<Voucher> Voucher { get; set; }
+        public DbSet<ItemsVoucher> ItemsVoucher { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

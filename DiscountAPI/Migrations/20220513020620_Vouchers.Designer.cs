@@ -4,14 +4,16 @@ using DiscountAPI.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DiscountAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220513020620_Vouchers")]
+    partial class Vouchers
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -68,33 +70,17 @@ namespace DiscountAPI.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TitleVoucher")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("VoucherTitle")
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("TitleVoucher");
+                    b.HasIndex("VoucherTitle");
 
                     b.ToTable("ItemsVoucher");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Item = "20% off on Wednesdays and Thursdays",
-                            TitleVoucher = "COCOG730CNSG8ZVX"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Item = "on Cleaning products",
-                            TitleVoucher = "COCOG730CNSG8ZVX"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Item = "from Jan 27th to Feb 13th",
-                            TitleVoucher = "COCOG730CNSG8ZVX"
-                        });
                 });
 
             modelBuilder.Entity("DiscountAPI.Models.Product", b =>
@@ -456,22 +442,13 @@ namespace DiscountAPI.Migrations
                     b.HasKey("Title");
 
                     b.ToTable("Voucher");
-
-                    b.HasData(
-                        new
-                        {
-                            Title = "COCOG730CNSG8ZVX",
-                            IdStore = 1
-                        });
                 });
 
             modelBuilder.Entity("DiscountAPI.Models.ItemsVoucher", b =>
                 {
-                    b.HasOne("DiscountAPI.Models.Voucher", "Voucher")
-                        .WithMany("ItemsVoucher")
-                        .HasForeignKey("TitleVoucher");
-
-                    b.Navigation("Voucher");
+                    b.HasOne("DiscountAPI.Models.Voucher", null)
+                        .WithMany("Items")
+                        .HasForeignKey("VoucherTitle");
                 });
 
             modelBuilder.Entity("DiscountAPI.Models.Product", b =>
@@ -504,7 +481,7 @@ namespace DiscountAPI.Migrations
 
             modelBuilder.Entity("DiscountAPI.Models.Voucher", b =>
                 {
-                    b.Navigation("ItemsVoucher");
+                    b.Navigation("Items");
                 });
 #pragma warning restore 612, 618
         }

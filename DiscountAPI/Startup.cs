@@ -20,6 +20,7 @@ namespace DiscountAPI
         }
 
         public IConfiguration Configuration { get; }
+        public object ReferenceHandler { get; private set; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -29,6 +30,8 @@ namespace DiscountAPI
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<IStockRepository, StockRepository>();
+            services.AddScoped<IVoucherRepository, VoucherRepository>();
+            services.AddScoped<IItemVoucherRepository, ItemVoucherRepository>();
 
             services.AddAutoMapper(configuration =>{
                 configuration.CreateMap<Product, ProductDTO>();
@@ -40,7 +43,8 @@ namespace DiscountAPI
             }, typeof(Startup)
             );
 
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson(x =>
+                x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

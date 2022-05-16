@@ -4,14 +4,16 @@ using DiscountAPI.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DiscountAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220513023211_SeedVoucher")]
+    partial class SeedVoucher
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -68,11 +70,15 @@ namespace DiscountAPI.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TitleVoucher")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("VoucherTitle")
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("TitleVoucher");
+                    b.HasIndex("VoucherTitle");
 
                     b.ToTable("ItemsVoucher");
 
@@ -467,11 +473,9 @@ namespace DiscountAPI.Migrations
 
             modelBuilder.Entity("DiscountAPI.Models.ItemsVoucher", b =>
                 {
-                    b.HasOne("DiscountAPI.Models.Voucher", "Voucher")
-                        .WithMany("ItemsVoucher")
-                        .HasForeignKey("TitleVoucher");
-
-                    b.Navigation("Voucher");
+                    b.HasOne("DiscountAPI.Models.Voucher", null)
+                        .WithMany("Items")
+                        .HasForeignKey("VoucherTitle");
                 });
 
             modelBuilder.Entity("DiscountAPI.Models.Product", b =>
@@ -504,7 +508,7 @@ namespace DiscountAPI.Migrations
 
             modelBuilder.Entity("DiscountAPI.Models.Voucher", b =>
                 {
-                    b.Navigation("ItemsVoucher");
+                    b.Navigation("Items");
                 });
 #pragma warning restore 612, 618
         }

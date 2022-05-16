@@ -63,6 +63,17 @@ namespace DiscountAPI.Models
                 new Stock { StoreStockId = 3, ProductStockId = 8, Quantity = 12 },
                 new Stock { StoreStockId = 3, ProductStockId = 4, Quantity = 9 }
                 );
+
+            modelBuilder.Entity<Voucher>().HasData(
+                new Voucher { Title= "COCOG730CNSG8ZVX", IdStore=1}
+                );
+
+            modelBuilder.Entity<ItemsVoucher>().HasData(
+                new ItemsVoucher { TitleVoucher = "COCOG730CNSG8ZVX", Item = "20% off on Wednesdays and Thursdays", Id = 1 },
+                new ItemsVoucher { TitleVoucher = "COCOG730CNSG8ZVX", Item = "on Cleaning products", Id = 2 },
+                new ItemsVoucher { TitleVoucher = "COCOG730CNSG8ZVX", Item = "from Jan 27th to Feb 13th", Id = 3 }
+                );
+
         }
     }
 }
